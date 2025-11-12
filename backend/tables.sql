@@ -6,9 +6,12 @@ create table user (
     email varchar(100),
     firstName varchar(100),
     lastName varchar(100),
-    dateRegistered date 
-    lastLogin DATETIME 
+    dateRegistered date, 
+    lastLogin DATETIME, 
     role  varchar(20),
     Status varchar(20),
     UNIQUE(email)
 )
+
+insert into user ( username, password, email, firstName, lastName, dateRegistered,lastLogin,role,Status )
+values ('tcvadmin','Tcv@1234','timecablevision@gmail.com','sivakumar','m','2025-11-10', '2025-11-10', 'admin','true' );
