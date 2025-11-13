@@ -9,5 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use('/api/user/signup', userRoute);
+console.log("index");
+app.use('/api/user', userRoute);
 module.exports= app;

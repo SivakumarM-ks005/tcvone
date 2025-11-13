@@ -1,10 +1,10 @@
 const connection = require('../connection');
 
 const signup = async(req,res )=>{
-    try {
+
         const user = req.body;
-        query = "select userName, password, email, status from user where email=?";
-        connection.query(query,[user.email], (error, results)=>{
+        query = "select * from user where userName=?";
+        connection.query(query,[user.userName], (error, results)=>{
             try {
                 if(results.length <= 0){
                       query ="insert into user ( username, password, email, firstName, lastName, dateRegistered,lastLogin,role,Status ) values (?,?,?,?,?,'2025-11-10', '2025-11-10', 'user','false')";
@@ -19,16 +19,16 @@ const signup = async(req,res )=>{
                 })
                 }
                 else {
-
+                    return res.status(400).json({
+                        message:"Email or User Name already exists"
+                    })
                 }
             } catch (error) {
                return res.status(500).json(error);
             }
         })
         
-    } catch (error) {
-       return res.status(500).json(error); 
-    }
+   
 }
 
 module.exports={signup}

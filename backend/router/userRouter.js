@@ -6,14 +6,16 @@ const {signup} = require('../controller/userController')
 router.post('/signup', signup)
 
 // router.post('/signup',(req,res)=>{
+//     console.log("test")
 //     let user = req.body;
-//     query ="select userName, password, email, status from user where email=?";
-//     connection.query(query,[user.email],(error, results)=>{
-//         try {
-//             if(results.length <=0){
+//     query ="select * from user where email=?";
+//     connection.query(query,[user.email],(err, results)=>{
+//        try{
+//           if(results.length <=0){               
 //                 date = new Date();
+//                  console.log("length",date)
 //                 query ="insert into user ( username, password, email, firstName, lastName, dateRegistered,lastLogin,role,Status ) values (?,?,?,?,?,'2025-11-10', '2025-11-10', 'user','false')";
-//                 connection.query(query, [user.userName, user.password, user.email, user.firstName, user.lastName],(err, results)=>{
+//                 connection.query(query, [user.userName, user.password, user.email, user.firstName, user.lastName],(error, results)=>{
 //                     try {
 //                         return res.status(200).json({
 //                             message: "Successfully registered"
@@ -27,10 +29,10 @@ router.post('/signup', signup)
 //                     message : "Email id already exists"
 //                 })
 //             }
-            
-//         } catch (error) {
-//             return res.status(500).json(err);
-//         }
+//        }
+//        catch{
+//         return res.status(500).json(err);
+//        }
 //     })
 // })
 

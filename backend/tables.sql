@@ -10,7 +10,7 @@ create table user (
     lastLogin DATETIME, 
     role  varchar(20),
     Status varchar(20),
-    UNIQUE(email)
+    UNIQUE(userName,email)
 )
 
 insert into user ( username, password, email, firstName, lastName, dateRegistered,lastLogin,role,Status )

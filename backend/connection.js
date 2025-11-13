@@ -1,8 +1,6 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-
-
 var  connection = mysql.createConnection({
     port: process.env.DB_PORT,
     host : process.env.DB_LOCALHOST,
@@ -11,12 +9,13 @@ var  connection = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-connection.connect((error)=>{
-    try {
-        console.log("connected")
-    } catch (error) {
-        console.log(error);
+connection.connect((err)=>{
+    try{
+ console.log("connected",process.env.DB_PORT, process.env.DB_LOCALHOST )
     }
+  catch{
+     console.log(err);
+  }
 });
 
 module.exports= connection;
