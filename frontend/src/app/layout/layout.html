@@ -1,7 +1,15 @@
-    <mat-form-field appearance="outline" floatLabel="always">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+<div class="container-fluied">
+<mat-toolbar>
+  <button matIconButton class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button (click)="signupAction()" matIconButton class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  Signup
+  </button>
+  <!-- <button matIconButton class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button> -->
+</mat-toolbar>
+</div>
