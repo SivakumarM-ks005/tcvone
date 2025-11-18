@@ -1,1 +1,67 @@
-<p>signup-dialog works!</p>
+<mat-toolbar>
+    <span>My Application</span>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="signupForm">
+        <mat-form-field appearance="outline" floatLabel="always" class="w-100">
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="userName" required>
+            <mat-error *ngIf="signupForm.controls.userName.touched &&  signupForm.controls.userName.invalid">
+                <span *ngIf="signupForm.controls.userName.errors.required">This is mandatory</span>
+                <span *ngIf="signupForm.controls.userName.errors.pattern">This field is invalid</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password">
+            <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide()">
+                <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="signupForm.controls.password.touched &&  signupForm.controls.password.invalid">
+                <span *ngIf="signupForm.controls.password.errors.required">This is mandatory</span>
+                <span *ngIf="signupForm.controls.password.errors.pattern">This field is invalid</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error *ngIf="signupForm.controls.email.touched &&  signupForm.controls.email.invalid">
+                <span *ngIf="signupForm.controls.email.errors.required">This is mandatory</span>
+                <span *ngIf="signupForm.controls.email.errors.pattern">This field is invalid</span>
+            </mat-error>
+        </mat-form-field>
+
+          <mat-form-field appearance="outline" floatLabel="always" class="w-100">
+            <mat-label>Contact Number</mat-label>
+            <input matInput formControlName="contactNumber" required>
+            <mat-error *ngIf="signupForm.controls.contactNumber.touched &&  signupForm.controls.contactNumber.invalid">
+                <span *ngIf="signupForm.controls.contactNumber.errors.required">This is mandatory</span>
+                <span *ngIf="signupForm.controls.contactNumber.errors.pattern">This field is invalid</span>
+            </mat-error>
+        </mat-form-field>
+
+          <mat-form-field appearance="outline" floatLabel="always" class="w-100">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
+            <mat-error *ngIf="signupForm.controls.firstName.touched &&  signupForm.controls.firstName.invalid">
+                <span *ngIf="signupForm.controls.firstName.errors.required">This is mandatory</span>
+                <span *ngIf="signupForm.controls.firstName.errors.pattern">This field is invalid</span>
+            </mat-error>
+        </mat-form-field>
+
+        
+          <mat-form-field appearance="outline" floatLabel="always" class="w-100">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
+            <mat-error *ngIf="signupForm.controls.lastName.touched &&  signupForm.controls.lastName.invalid">
+                <span *ngIf="signupForm.controls.lastName.errors.required">This is mandatory</span>
+                <span *ngIf="signupForm.controls.lastName.errors.pattern">This field is invalid</span>
+            </mat-error>
+        </mat-form-field>
+    </form>
+<button mat-raised-button color="primary" (click)="signupSubmit()" [disabled]="!(signupForm.valid)">Submit</button>
+    <button mat-raised-button mat-dialog-close>Close</button>
+</mat-dialog-content>

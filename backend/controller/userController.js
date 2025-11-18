@@ -23,8 +23,8 @@ const signup = async (req, res) => {
                 }
             }
             if (results.length <= 0) {
-                query = "insert into user ( username, password, email, firstName, lastName, dateRegistered,lastLogin,role,Status ) values (?,?,?,?,?,'2025-11-10', '2025-11-10', 'user','false')";
-                connection.query(query, [user.userName, user.password, user.email, user.firstName, user.lastName], (error, results) => {
+                query = "insert into user ( username, password, email,contactNumber, firstName, lastName, dateRegistered,lastLogin,role,Status ) values (?,?,?,?,?,?,'2025-11-10', '2025-11-10', 'user','false')";
+                connection.query(query, [user.userName, user.password, user.email, user.contactNumber, user.firstName, user.lastName], (error, results) => {
                     try {
                         return res.status(200).json({
                             message: "Successfully registered"

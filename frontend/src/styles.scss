@@ -70,19 +70,28 @@ body {
  
 }
 
+.mat-mdc-form-field-error-wrapper {
+  padding: 0px 10px !important;
+  font-size: 11px !important;
+  top:-4px !important
+}
 
- .mdc-text-field--outlined {
+ .mdc-text-field{
+  border-top: 1px solid rgb(6, 223, 6) !important;
+&--outlined {
   padding-left: 8px !important;
    padding-right: 8px !important;
   .mat-mdc-form-field-infix {
     padding-top: 8px !important;
     padding-bottom: 8px !important;
+    .mdc-notched-outline .mdc-notched-outline__notch {
+  // border-top: 1px solid rgb(189, 188, 188) !important;
+}
   }
  }
-.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__notch {
-  border-top: 1px solid red !important;
-}
 
+ }
+.mdc-text-field--outlined 
 //  ---- snack bar styles start  ---------
 .black-snackbar {
   background-color: black;
@@ -94,3 +103,11 @@ body {
   color: white
 }
   // ---- snack bar styles end  ---------
+
+  // Dialog style 
+
+  .mat-mdc-dialog-inner-container{
+    .mat-mdc-dialog-surface {
+      border-radius: 10px !important;
+    }
+  }
