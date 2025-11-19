@@ -12,7 +12,7 @@ import { SignupDialog } from '../dialogs/signup-dialog/signup-dialog';
   styleUrl: './layout.scss',
 })
 export class Layout {
-
+    opened = true;
   constructor(private dialog: MatDialog){}
   signupAction(){
     const dialogConfig = new MatDialogConfig;

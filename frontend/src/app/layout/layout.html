@@ -1,6 +1,6 @@
-<div class="container-fluied">
+<!-- <div class="container-fluied">
 <mat-toolbar>
-  <button matIconButton class="example-icon" aria-label="Example icon-button with menu icon">
+  <button matIconButton (click)="opened=!opened" class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
   <span>My App</span>
@@ -8,8 +8,12 @@
   <button (click)="signupAction()" matIconButton class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
   Signup
   </button>
-  <!-- <button matIconButton class="example-icon" aria-label="Example icon-button with share icon">
+  <button matIconButton class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
-  </button> -->
+  </button>
 </mat-toolbar>
-</div>
+</div> -->
+<mat-sidenav-container>
+<mat-sidenav mode="side" [(opened)]="opened">mat-sidenav</mat-sidenav>
+<mat-sidenav-content>Main</mat-sidenav-content>
+</mat-sidenav-container>
