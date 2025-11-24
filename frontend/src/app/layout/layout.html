@@ -1,10 +1,10 @@
 
 
 <mat-toolbar>
-  <button matIconButton (click)="opened=!opened" class="example-icon" aria-label="Example icon-button with menu icon">
+  <span>My App</span>
+    <button matIconButton (click)="sidenav.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My App</span>
   <span class="example-spacer"></span>
   <button matButton [matMenuTriggerFor]="menu">Menu</button>
 <mat-menu #menu="matMenu">
@@ -14,6 +14,6 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-<mat-sidenav [mode]="opened ? 'push' : 'side'" [(opened)]="opened">mat-sidenav</mat-sidenav>
+<mat-sidenav #sidenav mode="side" [(opened)]="opened">mat-sidenav</mat-sidenav>
 <mat-sidenav-content>Main</mat-sidenav-content>
 </mat-sidenav-container>

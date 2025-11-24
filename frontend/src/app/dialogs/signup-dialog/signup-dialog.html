@@ -3,6 +3,7 @@
 </mat-toolbar>
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="signupForm">
+        <div class="grid-2col">
         <mat-form-field appearance="outline" floatLabel="always" class="w-100">
             <mat-label>User Name</mat-label>
             <input matInput formControlName="userName" required>
@@ -61,6 +62,7 @@
                 <span *ngIf="signupForm.controls.lastName.errors.pattern">This field is invalid</span>
             </mat-error>
         </mat-form-field>
+        </div>
     </form>
 <button mat-raised-button color="primary" (click)="signupSubmit()" [disabled]="!(signupForm.valid)">Submit</button>
     <button mat-raised-button mat-dialog-close>Close</button>
