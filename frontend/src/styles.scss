@@ -207,3 +207,33 @@ mat-sidenav {
   grid-template-columns: 1fr 1fr;
   gap: .75rem;
 }
+
+
+// ---- form field style ------
+.mdc-text-field {
+  .mat-mdc-form-field-infix {
+      padding-top: 8px !important;
+      padding-bottom: 8px !important;
+      min-height: 36px !important;
+    }
+
+}
+
+
+// --- dialog style ---
+.custom-dialog{
+  .mat-toolbar {
+    background: var(--bs-indigo) !important;
+    color:var(--bs-white) !important;
+    height: 40px !important;
+    font-size: 1rem !important;
+  }
+  .mat-mdc-dialog-actions { 
+  justify-content: space-between !important;
+  background-color:  var(--bs-gray-300) !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px;
+}
+
+
+}

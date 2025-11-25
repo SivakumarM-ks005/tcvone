@@ -1,7 +1,8 @@
+<div class="custom-dialog">
 <mat-toolbar>
     <span>My Application</span>
 </mat-toolbar>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography" >
     <form [formGroup]="signupForm">
         <div class="grid-2col">
         <mat-form-field appearance="outline" floatLabel="always" class="w-100">
@@ -64,6 +65,11 @@
         </mat-form-field>
         </div>
     </form>
-<button mat-raised-button color="primary" (click)="signupSubmit()" [disabled]="!(signupForm.valid)">Submit</button>
-    <button mat-raised-button mat-dialog-close>Close</button>
+
 </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" (click)="signupSubmit()" [disabled]="!(signupForm.valid)">Submit</button>
+</mat-dialog-actions>
+</div>

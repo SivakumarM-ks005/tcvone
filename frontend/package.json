@@ -34,7 +34,9 @@
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.5",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "ngx-ui-loader": "^19.0.0",
+    "nodemailer": "^7.0.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
