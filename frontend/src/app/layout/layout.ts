@@ -5,10 +5,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SignupDialog } from '../dialogs/signup-dialog/signup-dialog';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { NgIf } from '@angular/common';
+import { Dashboard } from '../dashboard/dashboard';
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-layout',
  providers: [provideNativeDateAdapter()],
-  imports: [materialModule, NgIf],
+  imports: [materialModule, NgIf, Dashboard, RouterOutlet],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })
