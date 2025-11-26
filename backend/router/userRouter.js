@@ -1,10 +1,11 @@
 const express = require('express');
 const connection = require('../connection');
 const router = express.Router();
-const {signup, login} = require('../controller/userController')
+const {signup, login, forgotPassword} = require('../controller/userController')
 
 router.post('/signup', signup)
 router.post('/login', login)
+router.post('/forgotPassword', forgotPassword)
 
 // router.post('/signup',(req,res)=>{
 //     console.log("test")
