@@ -87,8 +87,8 @@ const forgotPassword = async(req, res)=>{
        query = "select userName, email, password from user where email=?";
        connection.query(query,[user.email], (error, results)=>{
         if(results.length <= 0){
-            return res.status(200).json({
-                message:"Password sent successfull to your email id"
+            return res.status(400).json({
+                message:"Email is not registered, Please enter registered email id"
             })
         }
         else {

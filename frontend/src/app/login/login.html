@@ -1,13 +1,15 @@
+<div class="login-page">
 <mat-card>
     <mat-card-header>
-        <h2 class="mb-0 text-center">TCV</h2>
+        <h2 class="mb-0 text-center">Welcome, TCV User!</h2>
+        <p>Please log in</p>
     </mat-card-header>
     <mat-card-content>
         <form>
-            <h4 class="card-title">Login</h4>
+            <!-- <h4 class="card-title">Login</h4> -->
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>User Name</mat-label>
-                <input matInput placeholder="Placeholder">
+                <input matInput  required>
             </mat-form-field>
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>Password</mat-label>
@@ -19,11 +21,13 @@
             </mat-form-field>
         
             <button mat-raised-button color="primary" (click)="loggedIn()">Login</button>
+
+            <a type="button" class="pt-3" (click)="forgotPassword()">Forgot Password</a>
         </form>
     </mat-card-content>
 </mat-card>
-
-<footer>
+<!-- <footer>
     Copyright © {{year}}
     <a href="#" rel="" target="_blank" title="Retrogemu">Retrogemu</a>
-</footer>
+</footer> -->
+</div>

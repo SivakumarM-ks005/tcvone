@@ -1,5 +1,11 @@
-// @media (max-width: 768px) {
-//   mat-sidenav {
-//     display: none !important;
-//   }
-// }
+@media screen and (max-width: 768px) {
+.login-page {
+    background: rgb(172, 151, 33);
+    color: white;
+  }
+   mat-card {
+     min-width: 100% !important;
+    max-width: 100% !important;
+   margin: 15px !important;
+ }
+}

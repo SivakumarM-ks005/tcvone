@@ -10,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-layout',
  providers: [provideNativeDateAdapter()],
-  imports: [materialModule, NgIf, Dashboard, RouterOutlet],
+  imports: [materialModule,   RouterOutlet],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })

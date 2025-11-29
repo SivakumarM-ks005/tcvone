@@ -5,3 +5,7 @@ email:string,
 firstName:string,
 lastName:string,
 }
+
+export interface forgotPasswordData{
+email:string,
+}

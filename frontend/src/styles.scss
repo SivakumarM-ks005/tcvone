@@ -103,58 +103,61 @@ mat-toolbar {
   z-index: 100;
 }
 
-// .mat-mdc-text-field-wrapper {
-//   background-color: var(--white);
 
-//   .mat-mdc-form-field-flex {
-//     .mat-mdc-floating-label {
-//       top: calc((56px /2) - 10px) !important;
-//     }
-//   }
+// --------------- login -------------
+.login-page {
+  height: 100vh;
+  width: 100%;
+  background: var(--bs-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  h2{
+    font-size: 24px;
+  }
+  .mat-mdc-raised-button {
+    background: var( --bs-blue) !important;
+    width: 100%;
+    border-radius: 5px;
+    color:var(--bs-white) !important;
+}
+a {
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
 
-//   .mat-mdc-form-field-infix {
-//     .mat-mdc-floating-label {
-//       // top: calc((56px /3) - 10px) !important;
-//     }
-
-//     width: 100% !important;
-//     min-height: calc(56px - 20px) !important;
-//   }
-
-
-// }
-
-// .mat-mdc-form-field-error-wrapper {
-//   padding: 0px 10px !important;
-//   font-size: 11px !important;
-//   // top: -4px !important
-// }
-
-// .mdc-text-field {
-//   // border-top: 1px solid rgb(6, 223, 6) !important;
-
-//   &--outlined {
-//     padding-left: 8px !important;
-//     padding-right: 8px !important;
-
-//     .mat-mdc-form-field-infix {
-//       padding-top: 8px !important;
-//       padding-bottom: 8px !important;
-
-//       .mdc-notched-outline .mdc-notched-outline__notch {
-//         border-top: 1px solid rgb(143, 39, 39) !important;
-//       }
-//     }
-//   }
-
-// }
-// .mdc-notched-outline--notched .mdc-notched-outline__notch {
-// border-top: 1px solid red;
-// }
-
-// .mdc-notched-outline__notch {
-//   border-right: none !important;
-// }
+mat-card {
+    min-width: 400px;
+     max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+    border-radius: 5px !important;
+    background-color: var(--bs-white);
+}
+.mat-mdc-card-header {
+    display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   flex-direction: column;
+   h2{
+    color:var(--bs-blue);
+    font-weight: 500;
+    display: block;
+    padding-bottom: 10px;
+    padding-top: 10px;
+   }
+   p {
+    margin-bottom: 20px;
+   }
+}
+mat-form-field {
+    display: block;
+    margin-bottom: 10px;
+}
+}
  //  ---- snack bar styles start  ---------
 
 .black-snackbar {
@@ -236,4 +239,11 @@ mat-sidenav {
 }
 
 
+}
+
+
+// --------- mat forms ---------------------
+
+.mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after {
+    color: red;
 }
