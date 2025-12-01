@@ -5,22 +5,29 @@
         <p>Please log in</p>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form [formGroup]="loginForm">
             <!-- <h4 class="card-title">Login</h4> -->
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>User Name</mat-label>
-                <input matInput  required>
+                <input matInput formControlName="userName" required>
+                <mat-error *ngIf="loginForm.controls.userName.touched && loginForm.controls.userName.invalid">
+                    <span *ngIf="loginForm.controls.userName.errors.required">This is mandatory field</span>
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>Password</mat-label>
-                <input matInput [type]="hide() ? 'password' : 'text'" />
-                <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                  <input matInput type="password" formControlName="password" required/>
+                <!-- <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" required/> -->
+                <!-- <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide()">
                     <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
+                </button> -->
+                <mat-error *ngIf="loginForm.controls.userName.touched && loginForm.controls.password.invalid">
+                    <span *ngIf="loginForm.controls.password.errors.required">This is mandatory field</span>
+                </mat-error>
             </mat-form-field>
         
-            <button mat-raised-button color="primary" (click)="loggedIn()">Login</button>
+            <button mat-raised-button color="primary" (click)="loggedIn()" [disabled]="!(loginForm.valid && loginForm.dirty)">Login</button>
 
             <a type="button" class="pt-3" (click)="forgotPassword()">Forgot Password</a>
         </form>

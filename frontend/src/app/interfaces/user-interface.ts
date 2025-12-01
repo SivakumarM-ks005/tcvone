@@ -9,3 +9,8 @@ lastName:string,
 export interface forgotPasswordData{
 email:string,
 }
+
+export interface loginData{
+userName:string,
+password:string
+}
