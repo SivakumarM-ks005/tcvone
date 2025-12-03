@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 
+
 const signup = async (req, res) => {
     const user = req.body;
     query = "select * from user where userName=? OR email=?";
@@ -25,7 +26,7 @@ const signup = async (req, res) => {
                 }
             }
             if (results.length <= 0) {
-                query = "insert into user ( username, password, email,contactNumber, firstName, lastName, dateRegistered,lastLogin,role,Status ) values (?,?,?,?,?,?,'2025-11-10', '2025-11-10', 'user','false')";
+                query = "insert into user ( username, password, email,contactNumber, firstName, lastName, dateRegistered,lastLogin,role,Status ) values (?,?,?,?,?,?,'2025-11-10', '2025-11-10', 'user','true')";
                 connection.query(query, [user.userName, user.password, user.email, user.contactNumber, user.firstName, user.lastName], (error, results) => {
                     try {
                         return res.status(200).json({
@@ -49,7 +50,7 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
     const user = req.body;
-    query = "select userName,password, role, status from user where userName=?";
+    query = "select userName,password, role, Status from user where userName=?";
     connection.query(query, [user.userName], (error, results) => {
         try {
             if (results.length <= 0 || results[0].password != user.password) {
@@ -117,36 +118,64 @@ const forgotPassword = async (req, res) => {
 }
 
 
-const getUser = async(req, res)=>{
-    query = "select userId, userName from user where role='user'";
-    connection.query(query,(error, results)=>{
+const getUser = async (req, res) => {
+    query = "select * from user where role='user'";
+    connection.query(query, (error, results) => {
         try {
             return res.status(200).json(results);
-        } catch (error) {
-           return res.status(500).json(error); 
-        }
-    })
-}
-
-const updateUser = async(req, res)=>{
-    let user = req.body;
-    query = "update user set status=? where id =?";
-    connection.query(query,[user.userId, user.status],(error, results)=>{
-        try {
-            if(results.affectedRows ==0){
-                return res.status(404).json({
-                    message: "User id does not exist"
-                })
-            }
-            return res.status(200).json({ message:"user updated successfully"});
         } catch (error) {
             return res.status(500).json(error);
         }
     })
 }
 
-const getCheckToken = async(req,res)=>{
-    return res.status(200).json({ message: "true"});
+const updateUser = async (req, res) => {
+    let user = req.body;
+    query = "update user set Status=? where userId =?";
+    connection.query(query, [user.status, user.userId], (error, results) => {
+        try {
+            console.log("userid", user.userId);
+            if (results.affectedRows == 0) {
+                return res.status(404).json({
+                    message: "User id does not exist"
+                })
+            }
+            return res.status(200).json({ message: "user updated successfully" });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    })
 }
 
-module.exports = { signup, login, forgotPassword, getUser, updateUser, getCheckToken }
+const changePassword = async (req, res) => {
+    let user = req.body
+    let userName = res.locals.userName
+    query = "select * from user where userName=? and password=?"
+    connection.query(query, [userName, user.oldPassword], (error, results) => {
+        try {
+            if (results.length <= 0) {
+                return res.status(400).json({ message: "Incorrect old password" });
+            }
+            else if (results[0].password == user.oldPassword) {
+                query = "update user set password =? where userName=?"
+                connection.query(query, [user.newPassword, userName], (error, results) => {
+                    try {
+                        return res.status(200).json({ message: "Password updated successfully" });
+                    } catch (error) {
+                        return res.status(500).json(error)
+                    }
+                })
+            } else {
+                return res.status(400).json({ message: "Something went wrong, please try again later" })
+            }
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    })
+}
+
+const getCheckToken = async (req, res) => {
+    return res.status(200).json({ message: "true" });
+}
+
+module.exports = { signup, login, forgotPassword, getUser, updateUser, changePassword, getCheckToken }

@@ -1,12 +1,18 @@
 const express = require('express');
 const connection = require('../connection');
 const router = express.Router();
-const {signup, login, forgotPassword, getUser} = require('../controller/userController')
+const auth = require('../services/authendication');
+const checkRole = require ('../services/checkRole');
 
-router.post('/signup', signup)
-router.post('/login', login)
-router.post('/forgotPassword', forgotPassword)
-router.get('/get', getUser)
+const {signup, login, forgotPassword, getUser, updateUser, getCheckToken, changePassword} = require('../controller/userController')
+;
+router.post('/signup',signup);
+router.post('/login', login);
+router.post('/forgotPassword', forgotPassword);
+router.get('/get',auth.authendicateToken, checkRole.checkRole, getUser);
+router.patch('/update', auth.authendicateToken, checkRole.checkRole, updateUser);
+router.post('/changePassword', auth.authendicateToken,  changePassword);
+router.get('/getCheckToken',auth.authendicateToken, getCheckToken );
 
 // router.post('/signup',(req,res)=>{
 //     console.log("test")
