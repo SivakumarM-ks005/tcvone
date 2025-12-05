@@ -33,7 +33,7 @@ private userService: UserService) {
     if(localStorage.getItem('token')!= null){
       this.userService.checkToken().subscribe({
         next:(response:any)=>{
-          this.router.navigate(['/tcv/dashboard']);
+          this.router.navigate(['/tcv']);
         }, error: (error:any)=>{
           console.log(error);
         }
