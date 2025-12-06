@@ -36,7 +36,7 @@ export class RouteGuardService {
       return true;
       }
         this.snackbarService.openSnackBar(globalConstants.unauthorized, globalConstants.errorRegex);
-       this.router.navigate(['/tcv']);
+       this.router.navigate(['/dashboard']);
        return false;
      
     }else {

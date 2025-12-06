@@ -53,7 +53,7 @@ export class Login {
       next: (response:any)=>{
         this.ngxUiLoader.stop();
         localStorage.setItem('token',response.token);
-        this.router.navigate(['/tcv']);
+        this.router.navigate(['/dashboard']);
       },
       error: (error)=>{
          this.ngxUiLoader.stop();
