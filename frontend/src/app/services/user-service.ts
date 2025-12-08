@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { forgotPasswordData, loginData, SignupData} from '../interfaces/user-interface'
+import { changePasswordData, forgotPasswordData, loginData, SignupData} from '../interfaces/user-interface'
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
@@ -29,4 +29,11 @@ export class UserService {
   checkToken(){
     return this.httpClient.get(`${this.url}/user/getCheckToken`);
   }
+
+  changePassword(data: changePasswordData){
+    return this.httpClient.post(`${this.url}/user/changePassword`, data, {
+      headers: new HttpHeaders().set('content-type',"application/json")
+    })
+  }
+
 }

@@ -28,6 +28,7 @@ export class Login {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    localStorage.clear();
     this.loginForm = this.formBuilder.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]]
@@ -53,7 +54,7 @@ export class Login {
       next: (response:any)=>{
         this.ngxUiLoader.stop();
         localStorage.setItem('token',response.token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/tcv/dashboard']);
       },
       error: (error)=>{
          this.ngxUiLoader.stop();

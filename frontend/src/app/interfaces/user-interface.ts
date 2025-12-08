@@ -14,3 +14,8 @@ export interface loginData{
 userName:string,
 password:string
 }
+
+export interface changePasswordData{
+    oldPassword: string,
+    newPassword: string
+}

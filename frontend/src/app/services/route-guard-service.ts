@@ -31,17 +31,18 @@ export class RouteGuardService {
         checkRole = true;
       }
     }
-    if(tokenPaylod.role === 'user' || tokenPaylod.role === 'admin'){
+    if( tokenPaylod.role === 'admin' || tokenPaylod.role === 'user'){
       if(this.auth.isAuthendicated() && checkRole){
       return true;
       }
         this.snackbarService.openSnackBar(globalConstants.unauthorized, globalConstants.errorRegex);
-       this.router.navigate(['/dashboard']);
+       this.router.navigate(['/tcv/dashboard']);
        return false;
      
     }else {
       this.router.navigate(['/']);
       localStorage.clear();
+       this.snackbarService.openSnackBar(globalConstants.unauthorized, globalConstants.errorRegex);
       return false;
     }
   }
