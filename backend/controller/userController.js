@@ -150,13 +150,15 @@ const updateUser = async (req, res) => {
 const changePassword = async (req, res) => {
     let user = req.body
     let userName = res.locals.userName
+    console.log(res.locals.userName, user)
     query = "select * from user where userName=? and password=?"
     connection.query(query, [userName, user.oldPassword], (error, results) => {
         try {
             if (results.length <= 0) {
-                return res.status(400).json({ message: "Incorrect old password" });
+                console.log(results.length);
+                return res.status(401).json({ message: "Incorrect old password" });
             }
-            else if (results[0].password == user.oldPassword) {
+           if (results[0].password === user.oldPassword) {
                 query = "update user set password =? where userName=?"
                 connection.query(query, [user.newPassword, userName], (error, results) => {
                     try {

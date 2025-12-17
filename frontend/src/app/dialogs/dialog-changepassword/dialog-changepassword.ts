@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { SnackbarService } from '../../services/snackbar-service';
@@ -19,40 +19,64 @@ import { DialogConfig } from '@angular/cdk/dialog';
   styleUrl: './dialog-changepassword.scss',
 })
 export class DialogChangepassword {
-//   changePasswordForm!: FormGroup;
+  changePasswordForm!: FormGroup;
+  hidePassword:boolean = true
+  responsiveMessage: any
+hideConfirmPassword:boolean = true
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private ngxUiLoader: NgxUiLoaderService,
+    private snackbarService: SnackbarService,
+    private dialogRef: MatDialogRef<DialogChangepassword>
+  ) { }
+
+  ngOnInit(): void {
+    this.initForm();
+  } 
+
+  initForm(){
+    this.changePasswordForm = this.formBuilder.group({
+      oldPassword: [null, [Validators.required]],
+      newPassword: [null, [Validators.required, Validators.pattern(globalConstants.passwordRegex)]],
+      confirmPassword: [null, [Validators.required]]
+    },
+      {
+       validators: this.passwordMatchValidator,
+
+      });
+  }
   
-//   responsiveMessage: any
+passwordMatchValidator(control:AbstractControl){
+  return control.get('newPassword')?.value ===  control.get('confirmPassword')?.value? null : {mismatch : true}
+}
 
-//   constructor(
-//     private formBuilder: FormBuilder,
-//     private userService: UserService,
-//     private router: Router,
-//     private ngxUiLoader: NgxUiLoaderService,
-//     private snackbarService: SnackbarService,
-//     private dialogRef: MatDialogRef<DialogChangepassword>
-//   ) { }
-
-//   passwordMatchValidator(form: AbstractControl): ValidationErrors | null {
-//     const newPassword = form.get('newPassword')?.value;
-//     const confirmPassword = form.get('confirmPassword')?.value;
-//     return newPassword === confirmPassword ? null : { passwordMismatch: true };
-//   }
-
-//   ngOnInit(): void {
-//     this.changePasswordForm = this.formBuilder.group({
-//       // oldPassword: [null, [Validators.required]],
-//       newPassword: [null, [Validators.required, Validators.pattern(globalConstants.passwordRegex)]],
-//       confirmPassword: [null, [Validators.required]]
-//     },
-//       {
-//         validators: this.passwordMatchValidator.bind(this)
-
-//       });
-//   }
-// changePasswordAction(){
-//      console.log("Password Changed:", this.changePasswordForm.value);
-// }
-
-
+changePasswordAction(){
+    this.ngxUiLoader.start();
+    var formData = this.changePasswordForm.value,
+    data = {
+      oldPassword : formData.oldPassword,
+      newPassword : formData.newPassword
+    }
+    this.userService.changePassword(data).subscribe({
+      next: (response:any)=>{
+          this.ngxUiLoader.stop();
+          this.dialogRef.close();
+          this.responsiveMessage =response?.message;
+          this.snackbarService.openSnackBar(this.responsiveMessage, "");
+          this.router.navigate(['/']);
+      }, error: (error)=>{
+        this.ngxUiLoader.stop();
+        if(error.error?.error){
+          this.responsiveMessage = error.error?.message;
+        }
+        else{
+          this.responsiveMessage = globalConstants.genericError
+        }
+        this.snackbarService.openSnackBar(this.responsiveMessage, globalConstants.errorRegex)
+      }
+    })
+}
 
 }

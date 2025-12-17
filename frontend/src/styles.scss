@@ -247,3 +247,11 @@ mat-sidenav {
 .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after {
     color: red;
 }
+
+
+// ----- validation form error ----------------
+.error-msg {
+  font-size: 12px;
+  color: var(--bs-danger);
+  font-weight: 400;
+}

@@ -28,7 +28,7 @@ export class Login {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    localStorage.clear();
+    // localStorage.clear();
     this.loginForm = this.formBuilder.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]]
