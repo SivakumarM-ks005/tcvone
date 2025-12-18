@@ -23,6 +23,11 @@ export class DialogChangepassword {
   hidePassword:boolean = true
   responsiveMessage: any
 hideConfirmPassword:boolean = true
+ hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -68,7 +73,7 @@ changePasswordAction(){
           this.router.navigate(['/']);
       }, error: (error)=>{
         this.ngxUiLoader.stop();
-        if(error.error?.error){
+        if(error.error?.message){
           this.responsiveMessage = error.error?.message;
         }
         else{
