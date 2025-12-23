@@ -24,9 +24,12 @@
         Currently I am {{panelOpenState() ? 'open' : 'closed'}}
       </mat-panel-description> -->
     </mat-expansion-panel-header>
-    <ul>
-      <li>Dashboard</li>
-    </ul>
+  <mat-list-item
+  *ngFor="let menuItem of menuList"
+  routerLinkActive="selected"
+  [attr.data-group]="menuItem.state">
+  <a [routerLink]="['/tcv/dashboard', menuItem.state]" *ngIf="(menuItem.role === '' || menuItem.role === tokenPayload.role)">{{ menuItem.name }}</a>
+</mat-list-item>
   </mat-expansion-panel>
 </mat-accordion>
 </mat-sidenav>

@@ -46,6 +46,7 @@ export class Layout {
 
   ngOnInit(): void {
     this.menuList = this.menuItems.getMenuItems();
+    
       if (isPlatformBrowser(this.platformId)) {
     const token = localStorage.getItem('token');
     if (localStorage.getItem('token') != null) {
