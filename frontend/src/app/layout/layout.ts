@@ -14,6 +14,7 @@ import { Inject, PLATFORM_ID } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { MenuItems } from '../shared/menu-items';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ConfirmationDialog } from '../dialogs/confirmation-dialog/confirmation-dialog';
 @Component({
   selector: 'app-layout',
   providers: [provideNativeDateAdapter()],
@@ -71,5 +72,19 @@ export class Layout {
     const dialogConfig = new MatDialogConfig;
     dialogConfig.width="400px"
     this.dialog.open(DialogChangepassword, dialogConfig)
+  }
+
+  logout(){
+    const dialogConfig = new MatDialogConfig;
+    dialogConfig.width = "400px"
+    dialogConfig.data={
+      message: "Logout"
+    }
+    const dialogRef = this.dialog.open(ConfirmationDialog, dialogConfig);
+    const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((user)=>{
+      dialogRef.close();
+      localStorage.clear();
+      this.router.navigate(['/']);
+    })
   }
 }

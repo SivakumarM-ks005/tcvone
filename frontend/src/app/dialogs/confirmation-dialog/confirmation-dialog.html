@@ -1,7 +1,9 @@
-<mat-dialogdo-content>
+<mat-dialog-content>
     <h5> Do you want to {{details.message}}?</h5>
 </mat-dialog-content>
-<dialog-content-actions>
-    <button mat-raised-button>No</button>
-    <button mat-raised-button (click)="handleSubmit()">Yes</button>
-</dialog-content-actions>
+<mat-dialog-actions >
+    <div class="d-flex justify-content-between w-100">
+    <button mat-raised-button color="secondary" mat-dialog-close>No</button>
+    <button mat-raised-button color="primary" (click)="handleSubmit()">Yes</button>
+    </div>
+<mat-dialog-actions>
