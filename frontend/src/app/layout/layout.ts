@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { materialModule } from '../shared/material-module';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -15,6 +15,9 @@ import { jwtDecode } from 'jwt-decode';
 import { MenuItems } from '../shared/menu-items';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ConfirmationDialog } from '../dialogs/confirmation-dialog/confirmation-dialog';
+import { IdleService } from '../services/idle-service';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-layout',
   providers: [provideNativeDateAdapter()],
@@ -23,6 +26,9 @@ import { ConfirmationDialog } from '../dialogs/confirmation-dialog/confirmation-
   styleUrl: './layout.scss',
 })
 export class Layout {
+  idleService = inject(IdleService);
+  private idleSubscription?: Subscription;
+
   token:any = localStorage.getItem('token');
   tokenPayload: any;
   opened = false;
@@ -46,6 +52,17 @@ export class Layout {
   }
 
   ngOnInit(): void {
+
+    // ----------- idle logout function --------------
+this.idleSubscription = this.idleService.idleState.subscribe((isIdle)=>{
+  if(isIdle){
+    console.log("user is idle");
+    this.logout();
+  }else {
+    console.log("user is active")
+  }
+})
+
     this.menuList = this.menuItems.getMenuItems();
     
       if (isPlatformBrowser(this.platformId)) {
@@ -60,6 +77,16 @@ export class Layout {
       })
     }
   }
+  }
+
+  ngOnDestroy():void{
+    if(this.idleSubscription){
+      this.idleSubscription.unsubscribe();
+    }
+  }
+
+  onUserAction(){
+    this.idleService.resetTimer();
   }
 
   signupAction() {

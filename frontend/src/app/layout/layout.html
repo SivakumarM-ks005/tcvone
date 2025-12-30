@@ -13,8 +13,12 @@
   <button mat-menu-item (click)="logout()">Logout</button>
 </mat-menu>
 </mat-toolbar>
-
-<mat-sidenav-container>
+<div 
+(mousemove)="onUserAction()"
+(click)="onUserAction()"
+(keypress) ="onUserAction()"
+ >
+<mat-sidenav-container >
 <mat-sidenav #sidenav mode="side" [(opened)]="opened">
 <mat-accordion>
   <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
@@ -37,3 +41,4 @@
  <router-outlet></router-outlet>
 </mat-sidenav-content>
 </mat-sidenav-container>
+</div>
