@@ -56,8 +56,9 @@ export class Layout {
     // ----------- idle logout function --------------
 this.idleSubscription = this.idleService.idleState.subscribe((isIdle)=>{
   if(isIdle){
-    console.log("user is idle");
+   
     this.logout();
+     console.log("user is idle");
   }else {
     console.log("user is active")
   }
