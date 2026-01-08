@@ -134,7 +134,7 @@ const updateUser = async (req, res) => {
     query = "update user set Status=? where userId =?";
     connection.query(query, [user.status, user.userId], (error, results) => {
         try {
-            console.log("userid", user.userId);
+           // console.log("userid", user.userId);
             if (results.affectedRows == 0) {
                 return res.status(404).json({
                     message: "User id does not exist"
