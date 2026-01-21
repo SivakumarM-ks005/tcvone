@@ -42,9 +42,9 @@ values ('tcvadmin','Tcv@1234','timecablevision@gmail.com','sivakumar','m','2025-
 CREATE TABLE brands (
     brand_id INT AUTO_INCREMENT PRIMARY KEY,
     brand_name VARCHAR(100) NOT NULL UNIQUE,
-    description VARCHAR(255),
-    status TINYINT(1) DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    description VARCHAR(255),   
+    created_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     status TINYINT(1) DEFAULT 1,
      UNIQUE(brand_name)
 );
 -- Category Master (Recommended)
