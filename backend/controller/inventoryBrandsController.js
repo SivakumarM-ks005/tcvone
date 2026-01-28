@@ -4,7 +4,7 @@ require('dotenv').config;
 
 const addBrands = async (req, res) => {
     const brand = req.body;
-    query = "select * from brands where brand_name=?";
+    query = "SELECT * FROM brands WHERE brand_name=?";
     connection.query(query, [brand.brand_name], (error, results) => {
 
         try {
@@ -71,6 +71,18 @@ const deleteBrand = async (req, res) => {
             }
         } catch (error) {
             return res.status(500).json(error)
+        }
+    })
+}
+
+const updateBrand = async (req, res)=>{
+    const brand = req.body;
+    query = "UPDATE brands SET brand_name=?, description=?, created_dt=?, status=? WHERE brand_id=?"
+    connection.query(query,[brand.brand_name, brand.description, brand.created_dt, brand.status],(error, results)=>{
+        try {
+            
+        } catch (error) {
+            return res.status(500).json(error);
         }
     })
 }
