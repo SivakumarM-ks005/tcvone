@@ -77,13 +77,24 @@ const deleteBrand = async (req, res) => {
 
 const updateBrand = async (req, res)=>{
     const brand = req.body;
-    query = "UPDATE brands SET brand_name=?, description=?, created_dt=?, status=? WHERE brand_id=?"
-    connection.query(query,[brand.brand_name, brand.description, brand.created_dt, brand.status],(error, results)=>{
+    // query = "SELECT * FROM brands WHERE brand_id=?"
+      query ="UPDATE brands SET brand_name=?, description=?, created_dt=?, status=? WHERE brand_id=?";
+    connection.query(query,[brand.brand_name, brand.description, brand.created_dt, brand.status, brand.brand_id],(error,results )=>{
         try {
-            
+             
+            if (results.affectedRows == 0){
+                 console.log("test")
+                return res.status(404).json({
+                   message: "Brand id does not exist"
+                })
+            }
+           console.log("test1")
+            return res.status(200).json({
+                message: "Brand updated successfully"
+            })
         } catch (error) {
             return res.status(500).json(error);
         }
     })
 }
-module.exports = { addBrands, getAll, deleteBrand }
+module.exports = { addBrands, getAll, deleteBrand, updateBrand }
