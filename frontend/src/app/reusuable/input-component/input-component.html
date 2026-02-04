@@ -1,11 +1,5 @@
  <mat-form-field class="example-full-width">
-    <mat-label>{{label | titlecase}}</mat-label>
-    <input [type]="{{type}}" matInput [formControl]="control" [errorStateMatcher]="matcher"
-           placeholder="Ex. pat@example.com">
-    @if (control.touched && control.invalid) {
-      <mat-error>Please enter {{ label }}</mat-error>
-    }
-    @if (control?.error?.['required']) {
-      <mat-error>{{ errorLable}} <strong>required</strong></mat-error>
-    }
+    <mat-label>{{ label | titlecase }}</mat-label>
+    <input type="{{type}}" [class]="inputClass" [formControl]="control" >
+     <mat-label *ngIf="control.touched && control.invalid && control?.errors?.['required']">Please enter {{ label }}</mat-label>
   </mat-form-field>

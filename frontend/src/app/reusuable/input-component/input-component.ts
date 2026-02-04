@@ -1,9 +1,11 @@
+import { NgIf, TitleCasePipe } from '@angular/common';
 import { Component, Input, Self } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-input-component',
-  imports: [],
+  imports: [ ReactiveFormsModule, TitleCasePipe, MatFormFieldModule, NgIf],
   templateUrl: './input-component.html',
   styleUrl: './input-component.scss',
 })
