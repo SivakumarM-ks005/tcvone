@@ -22,7 +22,7 @@ export class IdleService {
   }
   private startWatching(){
      this.idleSubscription = interval(this.idleCheckInterval * 1000)
-     .pipe(throttle(()=> interval(1000)))
+     .pipe(throttle(()=> interval(100000)))
      .subscribe(()=>{
       const now = new Date();
       if(now.getTime() - this.lastActivity?.getTime() !> this.timeout * 1000){

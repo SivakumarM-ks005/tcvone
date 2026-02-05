@@ -1,5 +1,8 @@
-
-
+<!-- <div  style="height: 100%;"
+(mousemove)="onUserAction()"
+(click)="onUserAction()"
+(keypress) ="onUserAction()"
+ > -->
 <mat-toolbar>
   <span>My App</span>
     <button matIconButton (click)="sidenav.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
@@ -13,32 +16,54 @@
   <button mat-menu-item (click)="logout()">Logout</button>
 </mat-menu>
 </mat-toolbar>
-<div 
-(mousemove)="onUserAction()"
-(click)="onUserAction()"
-(keypress) ="onUserAction()"
- >
+
 <mat-sidenav-container >
 <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+  <mat-nav-list>
+            <a mat-list-item [routerLink]="['/tcv/dashboard']">Dashboard</a>
+        </mat-nav-list>
 <mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
-    <mat-expansion-panel-header>
-      <mat-panel-title> Self aware panel </mat-panel-title>
-      <!-- <mat-panel-description>
-        Currently I am {{panelOpenState() ? 'open' : 'closed'}}
-      </mat-panel-description> -->
-    </mat-expansion-panel-header>
-  <mat-list-item
-  *ngFor="let menuItem of menuList"
-  routerLinkActive="selected"
-  [attr.data-group]="menuItem.state">
-  <a [routerLink]="['/tcv/dashboard', menuItem.state]" *ngIf="(menuItem.role === '' || menuItem.role === tokenPayload.role)">{{ menuItem.name }}</a>
-</mat-list-item>
-  </mat-expansion-panel>
-</mat-accordion>
+
+      <!-- Menu 1 -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>dashboard</mat-icon>
+          <span>Products</span>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['/tcv/brands']">Brands</a>
+          <a mat-list-item routerLink="/reports">Reports</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <!-- Menu 2 -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list>
+          <a mat-list-item routerLink="/profile">Profile</a>
+          <a mat-list-item routerLink="/security">Security</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+    </mat-accordion>
 </mat-sidenav>
 <mat-sidenav-content>
+  <!-- <nav style="--bs-breadcrumb-divider: '>>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">{{ breadcrumbL1}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{breadcrumbL2}}</li>
+  </ol>
+</nav> -->
+<app-breadcrumb
+  [breadcrumbL1]="breadcrumbL1"
+  [breadcrumbL2]="breadcrumbL2">
+</app-breadcrumb>
  <router-outlet></router-outlet>
 </mat-sidenav-content>
 </mat-sidenav-container>
-</div>
+<!-- </div> -->

@@ -2,3 +2,31 @@
   flex: 1 1 auto;
 }
 
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 260px;
+  background: #f8f9fa;
+  padding: 10px;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+mat-expansion-panel {
+  background: transparent;
+  box-shadow: none;
+}
+
+mat-expansion-panel-header {
+  font-weight: 500;
+}
+
+.content {
+  padding: 20px;
+}

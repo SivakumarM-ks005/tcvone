@@ -182,13 +182,22 @@ mat-form-field {
 
 mat-sidenav-container {
   height: calc(100% - 11%);
+  .mat-drawer-inner-container {
+    padding:0 10px;
+    .mat-mdc-list-item{
+      border-bottom: 1px solid red;
+    }
+}
 
 }
 
 mat-sidenav,
 mat-sidenav-content {
-  padding: 16px;
+  padding: 0px;
   background: var(--bs-gray-300);
+  .mat-expansion-panel-header {
+    padding: 0 15px !important;
+  }
 }
 
 mat-sidenav {
@@ -196,6 +205,19 @@ mat-sidenav {
   width: 200px !important;
   border-radius: 0 !important;
   box-shadow: 0px 10px 3px 0 var(--bs-gray-400) !important;
+}
+// -----------  breadcrums -----------------
+.breadcrumb {
+  line-height: 40px;
+  padding-left: 20px;
+  background-color: var( --bs-cyan);
+  border-bottom: 1px solid var(--bs-gray-400);
+  .breadcrumb-item {
+    color: var(--bs-white);
+    a {
+      color: var(--bs-white);
+    }
+  }
 }
 
 // -----------  grid columns -----------------

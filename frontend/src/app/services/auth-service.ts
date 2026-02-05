@@ -11,7 +11,7 @@ export class AuthService {
   public isAuthendicated(): boolean{
     const token = localStorage.getItem('token');
     if(!token){
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
       return false
     }else {
       return true;
